@@ -56,7 +56,6 @@ def generator(samples, batch_size=32):
           source_path = batch_sample[i]
           filename = source_path.split('/')[-1]
           current_path = os.path.join(image_path, os.path.basename(filename))
-          print (current_path)
 
           image = cv2.imread(current_path)
           image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
