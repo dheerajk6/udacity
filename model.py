@@ -78,7 +78,7 @@ def generator(samples, batch_size=32):
 # Load the images via generator
 train_generator = generator(train_samples, batch_size=32)
 validation_generator = generator(validation_samples, batch_size=32)
-print('done')
+print('train generator done')
 
 
 def model_config():
@@ -139,13 +139,14 @@ file = 'model.h5'
 
 
 model = model_config()
-earlystopper = EarlyStopping(patience=5, verbose=1)
-checkpointer = ModelCheckpoint(file, monitor='val_loss', verbose=1, save_best_only=True)
-model.fit_generator(train_generator, steps_per_epoch= len(train_samples),
-                    validation_data=validation_generator,
-                    validation_steps=len(validation_samples), epochs = 5)
+print('model done')
+
+history_object = model.fit_generator(train_generator, steps_per_epoch=len(train_samples),
+  validation_data=validation_generator, validation_steps=len(validation_samples),
+epochs=5)
+
 model.save(file)
-print('done')
+print('model save done')
 
 # Plotting
 print(history_object.history.keys())
