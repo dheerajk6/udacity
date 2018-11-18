@@ -5,7 +5,7 @@ import csv
 import tensorflow
 
 from keras.models import Sequential
-from keras.layers import Flatten, Dense, Conv2D, MaxPooling2D 
+from keras.layers import Flatten, Dense, Conv2D, MaxPooling2D, Convolution2D 
 from keras.layers import Lambda, Cropping2D, Dropout, ELU
 from keras.layers import BatchNormalization
 from keras.optimizers import Adam
