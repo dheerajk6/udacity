@@ -24,7 +24,7 @@ def load_csv(file):
         reader = csv.reader(csvfile)
         for line in reader:
             lines.append(line)
-    return lines
+    return lines[1:]
 
 file = 'data/driving_log.csv'
 image_path = 'data/IMG/'
@@ -84,13 +84,10 @@ print('train generator done')
 def model_config():
   model = Sequential()
 
-# Crop 75 pixels from the top of the image and 25 from the bottom
-  model.add(Cropping2D(cropping=((75, 25), (0, 0)),
-                     input_shape=(160, 320, 3),
-                     data_format="channels_last"))
-
-# Normalize the data
-  model.add(Lambda(lambda x: (x/127.5) - 0.5))
+  model.add(Lambda(
+    lambda x: (x / 255) - 0.5,
+    input_shape=(160, 320, 3)))
+  model.add(Cropping2D(cropping=((70, 25), (0, 0))))
 
   model.add(Conv2D(3, (1, 1), padding='same'))
   model.add(ELU())
