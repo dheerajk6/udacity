@@ -24,7 +24,7 @@ def load_csv(file):
         reader = csv.reader(csvfile)
         for line in reader:
             lines.append(line)
-    return lines
+    return lines[1:]
 
 file = 'data/driving_log.csv'
 image_path = 'data/IMG/'
